@@ -11,8 +11,9 @@ namespace GroceryCoCheckout
         static void Main(string[] args)
         {
             //-----------Initialize all services-----------
-
             //Create and initialize item catalog
+            Catalog catalog = new Catalog();
+            catalog.ReadExcel();
 
             //Create and intialize promotional prices list
 

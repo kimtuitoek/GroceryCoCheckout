@@ -68,11 +68,12 @@
   <ItemGroup>
     <Compile Include="Classes\Cart.cs" />
     <Compile Include="Classes\Catalog.cs" />
+    <Compile Include="Classes\CLI.cs" />
     <Compile Include="Classes\Item.cs" />
     <Compile Include="Interfaces\ExcelReader.cs" />
     <Compile Include="Interfaces\Output.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Classes\Promotions.cs" />
+    <Compile Include="Classes\GroupPromotions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

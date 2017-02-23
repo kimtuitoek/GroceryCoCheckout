@@ -21,7 +21,29 @@ namespace GroceryCoCheckout
         /// <summary>
         /// The current discount percentage
         /// </summary>
-        public int Discount { get; set; }
+        public double Promotions { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double GroupPromotions { get; set; }
+
+        /// <summary>
+        /// The quantity of the item
+        /// </summary>
         public int Quantity { get; set; }
+
+        public Item(string name, double price, double promotions)
+        {
+            Name = name;
+            Price = price;
+            Promotions = promotions;
+        }
+
+        public string ToString()
+        {
+            string str = Name + "\t\t" + Price + "\t\t" + Promotions;
+            return str;
+        }
     }
 }
