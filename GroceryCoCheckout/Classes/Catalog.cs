@@ -18,7 +18,8 @@ namespace GroceryCoCheckout
 
         public Catalog()
         {
-            filePath = System.IO.Directory.GetCurrentDirectory() + "\\..\\..\\Data\\Catalog.xlsx";
+            string currentDirectory = System.IO.Directory.GetCurrentDirectory();
+            filePath = currentDirectory + "\\..\\..\\Data\\Catalog.xlsx";
             catalog = new SortedList<string, Item>();
             workbook = new XLWorkbook(filePath);
         }
@@ -61,6 +62,11 @@ namespace GroceryCoCheckout
         public void WriteExcel()
         {
 
+        }
+
+        public Item FindItem(string name)
+        {
+            return catalog[name];
         }
 
         public string ToString()

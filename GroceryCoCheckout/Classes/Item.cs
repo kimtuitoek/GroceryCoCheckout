@@ -19,12 +19,17 @@ namespace GroceryCoCheckout
         public double Price { get; set; }
 
         /// <summary>
+        /// Total discount applied to item
+        /// </summary>
+        public double Discount { get; set; }
+
+        /// <summary>
         /// The current discount percentage
         /// </summary>
         public double Promotions { get; set; }
 
         /// <summary>
-        /// 
+        /// GroupPromotions object
         /// </summary>
         public double GroupPromotions { get; set; }
 
@@ -38,6 +43,15 @@ namespace GroceryCoCheckout
             Name = name;
             Price = price;
             Promotions = promotions;
+        }
+
+        public Item(Item item)
+        {
+            this.Name = item.Name;
+            this.Price = item.Price;
+            this.Promotions = item.Promotions;
+            this.Quantity = 1;
+            this.Discount = 0;
         }
 
         public string ToString()

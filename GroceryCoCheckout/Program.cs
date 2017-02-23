@@ -19,11 +19,24 @@ namespace GroceryCoCheckout
 
             //Create and initialize group promotions list
 
-            //Create empty cart
+            //Create an empty cart and add items to the cart
+            Cart cart = new Cart(catalog);
+            cart.ReadExcel();
 
             //Create and initialize CLI(Command Line Interface)
+            CLI commands = new CLI(catalog, cart);
 
             //-----------Read input------------------------
+            Console.WriteLine("Enter a command. Type \"help\" to get a list of all commands.");
+            string input = Console.ReadLine();
+
+            //Continue receiving inputs until user types exit. Run the specified command
+            while (!(input.CompareTo("exit") == 0))
+            {
+                commands.RunCommand(input);
+                Console.WriteLine("\n"+ "Enter a command. Type \"help\" to get a list of all commands.");
+                input = Console.ReadLine();
+            }
 
             //-----------Exit------------------------------
             Console.WriteLine("Press any key to exit...");
