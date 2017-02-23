@@ -10,6 +10,24 @@ namespace GroceryCoCheckout
     {
         static void Main(string[] args)
         {
+            //-----------Initialize all services-----------
+
+            //Create and initialize item catalog
+
+            //Create and intialize promotional prices list
+
+            //Create and initialize group promotions list
+
+            //Create empty cart
+
+            //Create and initialize CLI(Command Line Interface)
+
+            //-----------Read input------------------------
+
+            //-----------Exit------------------------------
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+
         }
     }
 }
