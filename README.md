@@ -3,7 +3,7 @@ This is a command line checkout program for the GroceryCo company.
 
 ## How to build and run
 Clone this repository to your desktop:
-`git clone https://github.com/kimtuitoek/GroceryCoCheckout`
+`git clone https://github.com/kimtuitoek/GroceryCoCheckout.git`
 
 ### Using Visual studio
 Open the **GroceryCoCheckout.csproj** file located in the GroceryCoCheckout folder or follow the following steps:
