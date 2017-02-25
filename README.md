@@ -6,8 +6,35 @@ This is a command line checkout program for the GroceryCo company.
 ## Usage
 
 ## Assumptions
+* There is sufficient memory to run the application on the GroceryCo computers. The Catalog and Promotion objects are read in from excel files and stored in memory.
+* Items have already been scanned into the checkout system and stored in an excel file.
+* All discounts applied do not exceed the original price of the item.
+* The GroceryCo computers have an Excel editor.
 
 ## Design choices
+I chose to make the command line checkout system interactive and provided a design that allowed future extensibility.
+
+###File inputs
+
+###Classes
+The classes used are :
+| Class | Description |
+
+###Interfaces
+The interfaces used are:
+| Interface | Description |
+
+###Data structures
+* [Sorted list] - I chose to use this data structure to model different objects like Catalog, Output or anything that needed searching. Since the Sorted list implements binary search, the search time would be O(log n) (according to MSDN). This ensures a consistent time to search. 
+                - I had considered using a hash table insted but the downside was that high collision frequencies could not gurrantee consistent performance and memory usage escpecially for a large data set(e.g the catalog). While the a better hash function could be provided to prevent more collisions and ensure consistency, the chances are that the hash function would be slow.
+                - The downside to using a sorted list is that initialization would take longer since every item needs to be placed in its right place.
+
+* [Dictionary] - I chose this data structure to model objects like the Cart. Since the cart size was relatively small compared to the Catalog object. The TryGetValue implementation gurantees O(1) access time according to the MSDN which would make it faster to find items that have already been added to the cart when adding items from an unsorted shopping list.
+
+###Design patterns
+I consisdered using a few design patterns to solve some problems I encoured but was unable to due to time constraints. These are:
+* [Singleton] - 
+* [Observer listner] - 
 
 ## Limitations
 
