@@ -5,6 +5,7 @@ This is a command line checkout program for the GroceryCo company.
 
 ## Usage
 The command line accepts different commands that support a number of actions to interact with the program. They are defined as follows:
+
 | Command | Description |
 | --- | | --- |
 | `cart` | Shows all items in the cart and all applicable discounts |
@@ -67,5 +68,5 @@ I consisdered using a few design patterns to solve some problems I encountered b
 
 ## Limitations
 * Time constraint limited the amount of features that could be implemented.
-* Cannot enforce the Data files to be formated correctly without breaking the functionality of the program.
+* Cannot enforce the Data files to be formated correctly so as to not break the functionality of the program.
 
