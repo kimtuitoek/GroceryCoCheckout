@@ -12,7 +12,7 @@ Open the **GroceryCoCheckout.csproj** file located in the GroceryCoCheckout fold
 2. On the menu bar, choose **File**, **Open**, **Project/Solution**.
 The Open Project dialog box opens.
 3. Locate the **GroceryCoCheckout.csproj** in the GroceryCoCheckout folder and open it.
-4. Choose the F5 key to run the project. A Command Prompt window appears with the **GroceryCo Checkout** logo displayed.
+4. Choose the **F5 key** to run the project. A Command Prompt window appears with the **GroceryCo Checkout** logo displayed.
 
 ### Using the Command-line
 Follow the steps outlined on the MSDN [here](https://msdn.microsoft.com/en-ca/library/78f4aasd.aspx)
