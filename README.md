@@ -24,15 +24,15 @@ The classes used are :
 
 | Class | Description |
 | ---- | ---- |
-| Item | |
-| Catalog | |
-| Cart | |
-| CLI | |
-| Promotion | |
-| OnSalePrice| |
-| GroupPrice | |
-| OutputCLI | |
-| Misc | |
+| Item | This class represents an item. |
+| Catalog | This contains a list of all availale item. |
+| Cart | This contains a list of items from the customer's shopping list and all promotions that can be applied to an item. |
+| CLI | This class contains all available commands and their descriptions. |
+| Promotion | This is the base class of all promotions. For example, the OnSalePrice is promotion. |
+| OnSalePrice| This class extends the Promotion class and implments Discount interface. This class applies an "on sale price" promotion to an item based on the price definition for that tem outlined in the `OnSalePrice` excel file. An instance of this is passed during the creation of the cart object. |
+| GroupPrice | This class extends the Promotion class and implments Discount interface. This class applies a "group price" promotion to an item based to the group price definition outlined in the `GroupPrice` excel file. An instance of this is passed during the creation of the cart object. |
+| OutputCLI | This is a concrete implemtation for the Output interface. An Ouput object contains a command definition. This allows theh creation of any command. |
+| Misc | This class contains miscellaneous methods that are used by any class. |
 
 ###Interfaces
 The interfaces used are:
