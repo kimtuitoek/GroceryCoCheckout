@@ -9,7 +9,7 @@ namespace GroceryCoCheckout
     class Item
     {
         /// <summary>
-        /// Name of the item defined in the CSV
+        /// Name of the item
         /// </summary>
         public string Name { get; set; }
 
@@ -21,42 +21,46 @@ namespace GroceryCoCheckout
         /// <summary>
         /// Total discount applied to item
         /// </summary>
-        public double Discount { get; set; }
+        public double TotalDiscount { get; set; }
 
         /// <summary>
-        /// The current discount percentage
+        /// List of all the promotions applied to this item
         /// </summary>
-        public double Promotions { get; set; }
-
-        /// <summary>
-        /// GroupPromotions object
-        /// </summary>
-        public double GroupPromotions { get; set; }
+        public List<Promotion> Promotions { get; set; }
 
         /// <summary>
         /// The quantity of the item
         /// </summary>
         public int Quantity { get; set; }
 
-        public Item(string name, double price, double promotions)
+        /// <summary>
+        /// Constructor. Creates an item based on its name and price
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
+        public Item(string name, double price)
         {
             Name = name;
             Price = price;
-            Promotions = promotions;
         }
 
+        /// <summary>
+        /// Copy constructor
+        /// </summary>
+        /// <param name="item"></param>
         public Item(Item item)
         {
             this.Name = item.Name;
             this.Price = item.Price;
             this.Promotions = item.Promotions;
             this.Quantity = 1;
-            this.Discount = 0;
+            this.TotalDiscount = 0;
+            Promotions = new List<Promotion>();
         }
 
         public string ToString()
         {
-            string str = Name + "\t\t" + Price + "\t\t" + Promotions;
+            string str = Name + "\t\t" + Price;
             return str;
         }
     }

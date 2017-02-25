@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace GroceryCoCheckout
 {
@@ -10,21 +11,26 @@ namespace GroceryCoCheckout
     {
         static void Main(string[] args)
         {
+            PrintLogo();
             //-----------Initialize all services-----------
             //Create and initialize item catalog
             Catalog catalog = new Catalog();
             catalog.ReadExcel();
 
-            //Create and intialize promotional prices list
+            //Create and intialize OnSalePrice promotion object
+            OnSalePrice onSalePrice = new OnSalePrice();
+            onSalePrice.ReadExcel();
 
-            //Create and initialize group promotions list
+            //Create and initialize group promotion object
 
-            //Create an empty cart and add items to the cart
-            Cart cart = new Cart(catalog);
+            //Create an empty cart, add items to the cart and then apply all 
+            //qualifying promotions
+            Cart cart = new Cart(catalog, onSalePrice);
             cart.ReadExcel();
+            cart.ApplyPromotions();
 
             //Create and initialize CLI(Command Line Interface)
-            CLI commands = new CLI(catalog, cart);
+            CLI commands = new CLI(catalog, cart, cart.pay());
 
             //-----------Read input------------------------
             Console.WriteLine("Enter a command. Type \"help\" to get a list of all commands.");
@@ -42,6 +48,18 @@ namespace GroceryCoCheckout
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
 
+        }
+
+        /// <summary>
+        /// Displays logo
+        /// </summary>
+        public static void PrintLogo()
+        {
+            string currentDirectory = System.IO.Directory.GetCurrentDirectory();
+            string filePath = currentDirectory + "\\..\\..\\Data\\logo.txt";
+            string text = File.ReadAllText(filePath, Encoding.UTF8);
+            
+            Console.WriteLine(text + "\n");
         }
     }
 }

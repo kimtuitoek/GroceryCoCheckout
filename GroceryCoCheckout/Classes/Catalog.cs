@@ -12,16 +12,25 @@ namespace GroceryCoCheckout
     /// </summary>
     class Catalog : ExcelReader, Output
     {
+        public string CommandName { get; }
+        public string CommandDescription { get; }
         private SortedList<string, Item> catalog; //List of all items availalbe
         private string filePath;
         private XLWorkbook workbook;  //Workbook object represents an Excel spreadsheet 
 
         public Catalog()
         {
+            //Initialize workbook
             string currentDirectory = System.IO.Directory.GetCurrentDirectory();
             filePath = currentDirectory + "\\..\\..\\Data\\Catalog.xlsx";
-            catalog = new SortedList<string, Item>();
             workbook = new XLWorkbook(filePath);
+
+            //Initialize command name and description
+            CommandName = "catalog";
+            CommandDescription = "Shows all available items";
+
+            //Initialize an empty catalog list
+            catalog = new SortedList<string, Item>();
         }
 
         /// <summary>
@@ -31,7 +40,6 @@ namespace GroceryCoCheckout
         {
             const int name = 1;
             const int price = 2;
-            const int promotions = 3;
 
             //Access the first worksheet in the Excel spreadsheet
             var worksheet = workbook.Worksheet("Sheet1");
@@ -50,18 +58,12 @@ namespace GroceryCoCheckout
             {
                 String itemName = catalogRow.Cell(name).GetString();
                 double itemPrice = catalogRow.Cell(price).GetDouble();
-                double itemPromotion = catalogRow.Cell(promotions).GetDouble();
 
                 //Create a list of items keyed by the item name
-                catalog.Add(itemName, new Item(itemName, itemPrice, itemPromotion));
+                catalog.Add(itemName, new Item(itemName, itemPrice));
 
                 catalogRow = catalogRow.RowBelow();
             }
-        }
-
-        public void WriteExcel()
-        {
-
         }
 
         public Item FindItem(string name)
@@ -71,9 +73,17 @@ namespace GroceryCoCheckout
 
         public string ToString()
         {
-            string str = "Name" + "\t\t" + "Price $" + "\t\t" + "Promotion %" + "\n";
-            str += "---------------------------------------------\n";
-            foreach(var pair in catalog)
+            //Catalog table title
+            string line = Misc.drawLine('-', 50);
+            string str = "\n" + line + "\n";
+            str += "\t\t" + "Catalog" + "\n";
+            str += line + "\n";
+
+            //Table captions
+            str += "Name" + "\t\t" + "Price $" + "\t\t" + "\n";
+            str += line + "\n";
+
+            foreach (var pair in catalog)
             {
                 str += pair.Value.ToString() + "\n";
             }

@@ -13,7 +13,25 @@ namespace GroceryCoCheckout
     /// </summary>
     interface Output
     {
+        /// <summary>
+        /// The name of the command. All commands should be in small caps
+        /// </summary>
+        string CommandName { get; }
+
+        /// <summary>
+        /// A description of the command
+        /// </summary>
+        string CommandDescription { get; }
+
+        /// <summary>
+        /// The string to be printed to the command line
+        /// </summary>
+        /// <returns></returns>
         string ToString();
+
+        /// <summary>
+        /// Prints the string defined by the String method to the command line
+        /// </summary>
         void PrintToCLI();
     }
 }

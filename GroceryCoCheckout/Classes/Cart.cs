@@ -14,23 +14,39 @@ namespace GroceryCoCheckout
     class Cart : ExcelReader, Output
     {
         public double Total { get; set; }
+        public double TotalDiscount { get; set; }
         public int ItemCount { get; set; }
-        private Dictionary<string, Item> items;
+        public string CommandName { get; }
+        public string CommandDescription { get; }
+        private Dictionary<string, Item> cart;
         private Catalog catalog;
+        private Discount[] promotionList;
         private string filePath;
         private XLWorkbook workbook;  //Workbook object represents an Excel spreadsheet
+        
 
-        public Cart(Catalog catalog)
+        public Cart(Catalog catalog, params Discount[] promotionList)
         {
+            //Initialize workbook
             string currentDirectory = System.IO.Directory.GetCurrentDirectory();
             filePath = currentDirectory + "\\..\\..\\Data\\ShoppingList.xlsx";
             workbook = new XLWorkbook(filePath);
 
-            items = new Dictionary<string, Item>();
+            //Initialize an empty cart dictionary
+            cart = new Dictionary<string, Item>();
+
+            //Initialize instance variables
             Total = 0;
             ItemCount = 0;
+            TotalDiscount = 0;
 
+            //Initialize command name and description
+            CommandName = "cart";
+            CommandDescription = "Shows all items and applicable discounts";
+
+            //Initialize private objects
             this.catalog = catalog;
+            this.promotionList = promotionList;
         }
 
         /// <summary>
@@ -43,7 +59,7 @@ namespace GroceryCoCheckout
             //Check whether item exits in the items dictionary
             //TryGetValue returns true if item exists
             Item newItem;
-            if (items.TryGetValue(name, out newItem))
+            if (cart.TryGetValue(name, out newItem))
             {
                 //Item exists so increment it's quantity.
                 newItem.Quantity += 1;
@@ -53,15 +69,44 @@ namespace GroceryCoCheckout
                 //Searches catalog for the item then adds a new item to the cart
                 Item catalogItem = catalog.FindItem(name);
                 newItem = new Item(catalogItem);
-                items.Add(newItem.Name, newItem);
+                cart.Add(newItem.Name, newItem);
             }
-
-            //Update promotional discount total
-            newItem.Discount += newItem.Price * (newItem.Promotions / 100);
 
             //Increment cart Total
             Total += newItem.Price;
             ItemCount++;
+        }
+
+        /// <summary>
+        /// Iterates through every cart item and applies all qualifying discounts
+        /// </summary>
+        public void ApplyPromotions()
+        {
+            //Apply all promotions that are applicable
+            foreach(var item in cart)
+            {
+                for (int i = 0; i < promotionList.Length; i++)
+                {
+                    double discount;
+                    Promotion promotion = promotionList[i].ApplyDiscount(item.Value, out discount);
+
+                    //Update cart Total accordingly
+                    Total -= discount;
+                    TotalDiscount += discount;
+
+                    //Add promotion to list of promotions for this item
+                    if(promotion != null)
+                        item.Value.Promotions.Add(promotion);
+                }
+            }
+        }
+
+        public Output pay()
+        {
+            //Prints the receipt
+            string output = PrintReceipt();
+
+            return new OutputCLI("pay", "pay and print receipt", output);
         }
 
         /// <summary>
@@ -95,53 +140,112 @@ namespace GroceryCoCheckout
             }
         }
 
-        public void WriteExcel()
-        {
-
-        }
-
-        public void ApplyGroupDiscounts()
-        {
-
-        }
-
-        public void pay()
-        {
-
-        }
-
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public string ToString()
         {
-            string str = "\n" +"Name" + "\t\t" + "Price $" + 
-                "\t\t" + "Quantity" + "\n";
-            str += "------------------------------------------------------\n";
+            //Cart table title
+            string line = Misc.drawLine('-', 50);
+            string str = "\n" + line + "\n";
+            str += "\t\t" + "Cart items" + "\n";
+            str += line;
+            
+            //Cart table captions
+            str += "\n" +"Name" + "\t\t" + "Price $" + "\t\t" + "Quantity" + 
+                "\n";
+            str += line + "\n";
 
-            foreach (var pair in items)
+            //Discount table title
+            string discounts = "\n" + line + "\n";
+            discounts += "\t\t" + "Promotions applied" + "\n";
+            discounts += line;
+
+            //Discount table captions
+            discounts += "\n" + "Name" + "\t\t\t" + "Amount $" +"\n";
+            discounts += line + "\n";
+
+            //Table rows
+            foreach (var item in cart)
             {
                 //Display name, total price before discount and quantity 
-                str += pair.Value.Name + "\t\t" + 
-                    (pair.Value.Price * pair.Value.Quantity) + "\t\t" + 
-                    pair.Value.Quantity + "\n";
+                str += item.Value.Name + "\t\t" +
+                    Misc.format2DP((item.Value.Price * item.Value.Quantity))+ "\t\t" + 
+                    item.Value.Quantity + "\n";
 
-                //Display total discount for item in brackets. Does not display 
-                //if discount == 0
-                string discount = "\t\t" + "(-" + pair.Value.Discount + ")\n";
-                str += pair.Value.Discount == 0 ? "" : discount;
+                //Display total discount for each item in brackets. Does not display if total discount == 0
+                string discount = "\t\t" + "(-" + Misc.format2DP(item.Value.TotalDiscount) + ")\n";
+                str += item.Value.TotalDiscount == 0 ? "" : discount;
+
+                //Add applied promotions to promotions table
+                foreach(var promotion in item.Value.Promotions)
+                {
+                    discounts += item.Value.Name + " " + promotion.Name + " for" + "\t" +
+                        Misc.format2DP(promotion.Amount) + " "+  promotion.Info + "\n";
+                }
+                
             }
 
-            str += "------------------------------------------------------\n";
-            str += "Total:\t\t" + Total;
+            //Cart Total
+            str += line + "\n";
+            str += "Total:\t\t" + Misc.format2DP(Total);
             str += "\t\t" + ItemCount;
+
+            //Discount Total 
+            discounts += line + "\n";
+            discounts += "You save:\t\t" + Misc.format2DP(TotalDiscount);
+       
+            //Display cart table and discount table
+            str += "\n\n\n" + discounts;
+
+            return str;
+        }
+
+        /// <summary>
+        /// Prints a receipt
+        /// </summary>
+        /// <returns></returns>
+        public string PrintReceipt()
+        {
+            string str = "";
+            string line = Misc.drawLine('*', 48);
+
+            //Header for the receipt
+            str += "\t" + line + "\n\n";
+            str += "\t\t\t" + "GroceryCo Receipt" + "\n";
+            str += "\t\t\t"  + "\n";
+            str += "\t" + line + "\n";
+
+            //Print cart items and discount applied for each item
+            foreach (var item in cart)
+            {
+                //Display name and quantity bbefore total price and discount
+                str += "\t" + item.Value.Name + "\tx" + item.Value.Quantity + "\t\t\t\t$" +
+                    Misc.format2DP((item.Value.Price * item.Value.Quantity)) + "\n";
+
+                //Add applied promotions to the receipt
+                foreach (var promotion in item.Value.Promotions)
+                {
+                    str += "\t  " + promotion.Name + " " + promotion.Info  +
+                        "\t\t\t(-$" + Misc.format2DP(promotion.Amount) + ") " + "\n";
+                }
+            }
+
+            //Total
+            str += "\n" + "\t\t\t\t\t" + "Total:\t$" + Misc.format2DP(Total);
+            str += "\n" + "\t" + "Items sold: " + ItemCount;
+            str += "\n" + "\t" + "You saved : $" + TotalDiscount;
+
+            //Print thank you message
+            str += "\n\n\tThank you for shopping at GroceryCo!\n";
+
             return str;
         }
 
         public void PrintToCLI()
         {
             Console.WriteLine(ToString());
-        }
+        } 
     }
 }

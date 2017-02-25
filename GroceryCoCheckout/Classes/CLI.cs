@@ -8,27 +8,33 @@ namespace GroceryCoCheckout
 {
     /// <summary>
     /// This class stores all the commands available. Calls all the PrintToCLI methods of 
-    /// each class
+    /// each Output object
     /// </summary>
     class CLI
     {
-        private Catalog catalog;
-        private Cart cart;
+        private Output[] output;
         private SortedList<string, Action> commands;
+        private Dictionary<string, string> descriptions;
 
-        public CLI(Catalog catalog, Cart cart)
+        public CLI(params Output[] output)
         {
             //Pass an instance of an existing object to create a commads for it
-            this.catalog = catalog;
-            this.cart = cart;
+            this.output = output;
 
             //Build list of commands mapping the command name to an action delegate
             commands = new SortedList<string, Action>();
+            descriptions = new Dictionary<string, string>();
 
-            //All commands should be in small caps
-            commands.Add("catalog", catalog.PrintToCLI);
-            commands.Add("cart", cart.PrintToCLI);
-            commands.Add("help", printHelp);
+            //Create a command and adds its description
+            for (int i = 0; i < output.Length; i++)
+            {
+                commands.Add(output[i].CommandName, output[i].PrintToCLI);
+                descriptions.Add(output[i].CommandName, output[i].CommandDescription);
+            }
+
+            //Add help command and its description
+            commands.Add("help", ToString);
+            descriptions.Add("help", "Shows a list of all available commands");
         }
 
         /// <summary>
@@ -61,14 +67,35 @@ namespace GroceryCoCheckout
         /// <summary>
         /// Displays all available commands
         /// </summary>
-        private void printHelp()
+        private void ToString()
         {
-            Console.WriteLine("\n" + "-------------All Commands-------------");
+            string line = Misc.drawLine('-', 57);
+
+            //Command table title
+            string str = "\n" + line +"\n";
+            str += "\t\t" + "All Commands" + "\n";
+            str += line + "\n";
+
+            //Cart table captions
+            str += "Name" + "\t\t" + "Description" + "\n";
+            str += line + "\n";
+
+            //Command table entries
             foreach (var v in commands)
             {
-                Console.WriteLine(v.Key);
+               //Display command name
+               str += v.Key + "\t\t";
+
+               //Diplay command description
+               string description = "";
+               descriptions.TryGetValue(v.Key, out description);
+
+                str += description + "\n";
             }
-            Console.WriteLine("exit");
+
+            str += "exit" + "\t\t" + "Exits the program" + "\n";
+
+            Console.WriteLine(str);
         }
 
     }

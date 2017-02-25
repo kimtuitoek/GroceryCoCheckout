@@ -70,8 +70,15 @@
     <Compile Include="Classes\Catalog.cs" />
     <Compile Include="Classes\CLI.cs" />
     <Compile Include="Classes\Item.cs" />
+    <Compile Include="Classes\Misc.cs" />
+    <Compile Include="Classes\OnSalePrice.cs" />
+    <Compile Include="Classes\OutputCLI.cs" />
+    <Compile Include="Classes\PromotionType.cs" />
+    <Compile Include="Interfaces\Discount.cs" />
     <Compile Include="Interfaces\ExcelReader.cs" />
+    <Compile Include="Interfaces\ExcelWriter.cs" />
     <Compile Include="Interfaces\Output.cs" />
+    <Compile Include="Classes\Promotion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Classes\GroupPromotions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
