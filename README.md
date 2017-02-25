@@ -7,6 +7,7 @@ Clone this repository to your desktop:
 
 ### Using Visual studio
 Open the **GroceryCoCheckout.csproj** file located in the GroceryCoCheckout folder or follow the following steps:
+
 1. Start Visual Studio.
 2. On the menu bar, choose **File**, **Open**, **Project/Solution**.
 The Open Project dialog box opens.
