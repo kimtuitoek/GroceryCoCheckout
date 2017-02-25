@@ -18,8 +18,9 @@ I chose to make the command line checkout system interactive and provided a desi
 
 ###Classes
 The classes used are :
+
 | Class | Description |
-| --- | --- |
+| ---- | ---- |
 | Item | |
 | Catalog | |
 | Cart | |
@@ -32,6 +33,7 @@ The classes used are :
 
 ###Interfaces
 The interfaces used are:
+
 | Interface | Description |
 | --- | --- |
 | Excel reader | |
