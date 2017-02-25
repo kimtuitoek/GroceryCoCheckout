@@ -4,6 +4,15 @@ This is a command line checkout program for the GroceryCo company.
 ## How to build and run
 
 ## Usage
+The command line accepts different commands that support a number of actions to interact with the program. They are defined as follows:
+| Command | Description |
+| --- | | --- |
+| `cart` | Shows all items in the cart and all applicable discounts |
+| `catalog` | Shows all available items |
+| `pay` | Pay and print receipt|
+| `help` | Displays all available commands|
+| `exit` | Exits the program |
+
 
 ## Assumptions
 * There is sufficient memory to run the application on the GroceryCo computers. The Catalog and Promotion objects are read in from excel files and stored in memory.
@@ -41,14 +50,14 @@ The interfaces used are:
 | --- | --- |
 | ExcelReader | This interface defines the `ReadExcel` method. Classes that implement this method must provide a way to read an excel file. |
 | Discount | This interface defines the `ApplyPromotion` method. Classes that implment this method need to pass an Item and an output variavle representing the `TotalDiscountApplied` to the item. It should return a `Promotion` object that represents the promotion applied. |
-| Output | This interface define the PrintToCLI method. This method is called when executing a command. Classes that implement this interface need to override the ToString() method. |
+| Output | This interface define the `PrintToCLI` method. This method is called when executing a command. Classes that implement this interface need to override the `ToString` method.  Could be extended to include command line arguments|
 
 ###Data structures
-* `Sorted list` - I chose to use this data structure to model different objects like Catalog, Output or anything that needed searching. Since the Sorted list implements binary search, the search time would be O(log n) (according to MSDN). This ensures a consistent time to search. 
+* `Sorted list` - I chose to use this data structure to model different objects like Catalog, Output or anything that needed searching. Since the Sorted list implements binary search, the search time would be `O(log n)` (according to MSDN). This ensures a consistent time to search since this operation is the most used in the Catalog object.
  I had considered using a hash table insted but the downside was that high collision frequencies could not gurrantee consistent performance and memory usage escpecially for a large data set(e.g the catalog). While the a better hash function could be provided to prevent more collisions and ensure consistency, the chances are that the hash function would be slow.
  The downside to using a sorted list is that initialization would take longer since every item needs to be placed in its right place.
 
-* `Dictionary` - I chose this data structure to model objects like the Cart. Since the cart size was relatively small compared to the Catalog object. The TryGetValue implementation gurantees O(1) access time according to the MSDN which would make it faster to find items that have already been added to the cart when adding items from an unsorted shopping list.
+* `Dictionary` - I chose this data structure to model objects like the Cart. Since the cart size was relatively small compared to the Catalog object. The TryGetValue implementation gurantees `O(1)` access time according to the MSDN which would make it faster to find items that have already been added to the cart when adding items from an unsorted shopping list.
 
 ###Design patterns
 I consisdered using a few design patterns to solve some problems I encountered but was unable to due to time constraints. These are:
@@ -57,5 +66,6 @@ I consisdered using a few design patterns to solve some problems I encountered b
 * `Observer listner` - I wanted to use the FileSystemWatcher class(which imolments the observer listener design pattern) from the System.IO package to watch for any changes to the prices and promotional prices defined in the excel files during runtime. This would ensure that all the prices and promotions defined in memory were the latest price definitions.
 
 ## Limitations
-
+* Time constraint limited the amount of features that could be implemented.
+* Cannot enforce the Data files to be formated correctly without breaking the functionality of the program.
 
