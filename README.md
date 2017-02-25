@@ -77,7 +77,7 @@ The interfaces used are:
 I consisdered using a few design patterns to solve some problems I encountered but was unable to due to time constraints. These are:
 * `Singleton` - I wanted to have singletons for objects like Catalog, CLI, or the Promotion objects to ensure only one instance is created. This would ensure that memory usage is at a minium with no extra objects being created.
 
-* `Observer listner` - I wanted to use the FileSystemWatcher class(which imolments the observer listener design pattern) from the System.IO package to watch for any changes to the prices and promotional prices defined in the excel files during runtime. This would ensure that all the prices and promotions defined in memory were the latest price definitions.
+* `Observer listner` - I wanted to use the FileSystemWatcher class(which implements the observer listener design pattern) from the System.IO package to watch for any changes to the prices and promotional prices defined in the excel files during runtime. This would ensure that all the prices and promotions defined in memory were the latest price definitions.
 
 ## Limitations
 * Time constraint limited the amount of features that could be implemented.
