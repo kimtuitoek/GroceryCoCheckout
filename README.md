@@ -30,7 +30,8 @@ The command line accepts different commands that support a number of actions to 
 
 ## Assumptions
 * There is sufficient memory to run the application on the GroceryCo computers. The Catalog and Promotion objects are read in from excel files and stored in memory.
-* Items have already been scanned into the checkout system and stored in an excel file.
+* Items have already been scanned into the checkout system and stored in a ShoppingList excel file.
+* Items in the ShoppingList excel file are ordered in the order they were scanned.
 * All discounts applied do not exceed the original price of the item.
 * The GroceryCo computers have an Excel editor.
 
