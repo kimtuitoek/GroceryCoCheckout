@@ -7,13 +7,12 @@ This is a command line checkout program for the GroceryCo company.
 The command line accepts different commands that support a number of actions to interact with the program. They are defined as follows:
 
 | Command | Description |
-| --- | | --- |
+| --- | --- |
 | `cart` | Shows all items in the cart and all applicable discounts |
 | `catalog` | Shows all available items |
 | `pay` | Pay and print receipt|
 | `help` | Displays all available commands|
 | `exit` | Exits the program |
-
 
 ## Assumptions
 * There is sufficient memory to run the application on the GroceryCo computers. The Catalog and Promotion objects are read in from excel files and stored in memory.
@@ -39,7 +38,7 @@ The classes used are :
 | Cart | This contains a list of items from the customer's shopping list and all promotions that can be applied to an item. |
 | CLI | This class contains all available commands and their descriptions. |
 | Promotion | This is the base class of all promotions. For example, the OnSalePrice is promotion. |
-| OnSalePrice| This class extends the Promotion class and implments Discount interface. This class applies an "on sale price" promotion to an item based on the price definition for that tem outlined in the `OnSalePrice` excel file. An instance of this is passed during the creation of the cart object. |
+| OnSalePrice | This class extends the Promotion class and implments Discount interface. This class applies an "on sale price" promotion to an item based on the price definition for that tem outlined in the `OnSalePrice` excel file. An instance of this is passed during the creation of the cart object. |
 | GroupPrice | This class extends the Promotion class and implments Discount interface. This class applies a "group price" promotion to an item based to the group price definition outlined in the `GroupPrice` excel file. An instance of this is passed during the creation of the cart object. |
 | OutputCLI | This is a concrete implemtation for the Output interface. An Ouput object contains a command definition. This allows theh creation of any command. |
 | Misc | This class contains miscellaneous methods that are used by any class. |
