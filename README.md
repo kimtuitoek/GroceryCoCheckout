@@ -39,9 +39,9 @@ The interfaces used are:
 
 | Interface | Description |
 | --- | --- |
-| Excel reader | |
-| Discount | |
-| Output | |
+| ExcelReader | This interface defines the `ReadExcel` method. Classes that implement this method must provide a way to read an excel file. |
+| Discount | This interface defines the `ApplyPromotion` method. Classes that implment this method need to pass an Item and an output variavle representing the `TotalDiscountApplied` to the item. It should return a `Promotion` object that represents the promotion applied. |
+| Output | This interface define the PrintToCLI method. This method is called when executing a command. Classes that implement this interface need to override the ToString() method. |
 
 ###Data structures
 * `Sorted list` - I chose to use this data structure to model different objects like Catalog, Output or anything that needed searching. Since the Sorted list implements binary search, the search time would be O(log n) (according to MSDN). This ensures a consistent time to search. 
