@@ -15,6 +15,9 @@ This is a command line checkout program for the GroceryCo company.
 I chose to make the command line checkout system interactive and provided a design that allowed future extensibility.
 
 ###File inputs
+* I decided to use Excel files to store the the list of items, prices and promotions. These files are availabel in the `Data` folder. The reason I chose this file type was because it is easier to read and edit and this would allow the marketing to team easily define new promotions. The downside is that parsing this type of file had to be done by implementing the Excel reader interface. A concrete immplementation of this interace could be provided int the future.
+* I considered other storage formats that would be easier to deal with such as `text` files, `CSV`, `JSON`, `XML`. The downside to this is that editing would be difficult.
+* Future considerations would be to provide a config file to define all settings applicable to this program.
 
 ###Classes
 The classes used are :
