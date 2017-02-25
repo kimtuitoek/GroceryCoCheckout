@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using ClosedXML.Excel;
 namespace GroceryCoCheckout
 {
-    class OnSalePrice : Promotion, ExcelReader, Discount
+    public class OnSalePrice : Promotion, ExcelReader, Discount
     {
-        private Dictionary<string, double> OnSalePrices; //List of all items availalbe
+        public Dictionary<string, double> OnSalePrices { get; } //List of all items availalbe
         private string filePath;
         private XLWorkbook workbook;  //Workbook object represents an Excel spreadsheet 
 
@@ -59,11 +59,6 @@ namespace GroceryCoCheckout
 
                 catalogRow = catalogRow.RowBelow();
             }
-        }
-
-        public void WriteExcel()
-        {
-
         }
 
         /// <summary>

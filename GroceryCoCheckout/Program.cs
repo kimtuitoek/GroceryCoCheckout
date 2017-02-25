@@ -32,6 +32,7 @@ namespace GroceryCoCheckout
             //Create and initialize CLI(Command Line Interface)
             CLI commands = new CLI(catalog, cart, cart.pay());
 
+
             //-----------Read input------------------------
             Console.WriteLine("Enter a command. Type \"help\" to get a list of all commands.");
             string input = Console.ReadLine();
@@ -43,6 +44,7 @@ namespace GroceryCoCheckout
                 Console.WriteLine("\n"+ "Enter a command. Type \"help\" to get a list of all commands.");
                 input = Console.ReadLine();
             }
+
 
             //-----------Exit------------------------------
             Console.WriteLine("Press any key to exit...");

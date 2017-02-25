@@ -11,14 +11,14 @@ namespace GroceryCoCheckout
     /// This class contains the storage of the list of items that the customer is going to 
     /// purchase
     /// </summary>
-    class Cart : ExcelReader, Output
+    public class Cart : ExcelReader, Output
     {
         public double Total { get; set; }
         public double TotalDiscount { get; set; }
         public int ItemCount { get; set; }
         public string CommandName { get; }
         public string CommandDescription { get; }
-        private Dictionary<string, Item> cart;
+        public Dictionary<string, Item> cart { get; }
         private Catalog catalog;
         private Discount[] promotionList;
         private string filePath;
@@ -42,7 +42,7 @@ namespace GroceryCoCheckout
 
             //Initialize command name and description
             CommandName = "cart";
-            CommandDescription = "Shows all items in the cart and all applicable discounts;
+            CommandDescription = "Shows all items in the cart and all applicable discounts";
 
             //Initialize private objects
             this.catalog = catalog;

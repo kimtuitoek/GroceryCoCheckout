@@ -11,7 +11,7 @@ namespace GroceryCoCheckout
     /// percentage or a value and has a name, amount to be applied and additional
     /// information about the promotion.
     /// </summary>
-    class Promotion
+    public class Promotion
     {
         /// <summary>
         /// Each promotion has a type

@@ -9,7 +9,7 @@ namespace GroceryCoCheckout
     /// <summary>
     /// A concrete implemtation of the Output interface
     /// </summary>
-    class OutputCLI : Output
+    public class OutputCLI : Output
     {
         public string CommandName {get;}
         public string CommandDescription { get; }

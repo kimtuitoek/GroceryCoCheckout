@@ -10,11 +10,11 @@ namespace GroceryCoCheckout
     /// <summary>
     /// This class stores an in memory version of all items.
     /// </summary>
-    class Catalog : ExcelReader, Output
+    public class Catalog : ExcelReader, Output
     {
         public string CommandName { get; }
         public string CommandDescription { get; }
-        private SortedList<string, Item> catalog; //List of all items availalbe
+        public SortedList<string, Item> catalog {get; } //List of all items availalbe
         private string filePath;
         private XLWorkbook workbook;  //Workbook object represents an Excel spreadsheet 
 
@@ -34,7 +34,7 @@ namespace GroceryCoCheckout
         }
 
         /// <summary>
-        /// Reads the Data/Catalog.xlsx file and creates catalog object
+        /// Reads the Data/Catalog.xlsx file and populates the catalog object
         /// </summary>
         public void ReadExcel()
         {
@@ -66,11 +66,20 @@ namespace GroceryCoCheckout
             }
         }
 
+        /// <summary>
+        /// Searches for an item in the catalog by name 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public Item FindItem(string name)
         {
             return catalog[name];
         }
 
+        /// <summary>
+        /// All items in the catalog in a string representation
+        /// </summary>
+        /// <returns></returns>
         public string ToString()
         {
             //Catalog table title
@@ -91,6 +100,9 @@ namespace GroceryCoCheckout
             return str; 
         }
 
+        /// <summary>
+        /// Interface implmentation 
+        /// </summary>
         public void PrintToCLI()
         {
             Console.WriteLine(ToString());

@@ -11,7 +11,7 @@ namespace GroceryCoCheckout.Interfaces
     /// WriteExcel method
     /// Information on how to implement this using closedXML is on https://github.com/ClosedXML/ClosedXML/wiki
     /// </summary>
-    interface ExcelWriter
+    public interface ExcelWriter
     {
         /// <summary>
         /// This methods writes to an excel file overwriting any existing data.

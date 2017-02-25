@@ -10,7 +10,7 @@ namespace GroceryCoCheckout
     /// ApplyDiscount should be implemented. This method is used to apply a discount to an
     /// item
     /// </summary>
-    interface Discount
+    public interface Discount
     {
         /// <summary>
         /// Applies a promotion to an item. Also returns the total discount applied on the item. 

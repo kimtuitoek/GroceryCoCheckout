@@ -11,7 +11,7 @@ namespace GroceryCoCheckout
     /// ToString method: converts the class intance variables to strings 
     /// PrintToCLI method: prints the generated string by the ToString method to the CLI
     /// </summary>
-    interface Output
+    public interface Output
     {
         /// <summary>
         /// The name of the command. All commands should be in small caps

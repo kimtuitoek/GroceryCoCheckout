@@ -12,7 +12,7 @@ namespace GroceryCoCheckout
     /// ReadExcel method
     /// Information on how to implement these using closedXML is on https://github.com/ClosedXML/ClosedXML/wiki
     /// </summary>
-    interface ExcelReader
+    public interface ExcelReader
     {
         /// <summary>
         /// This methods reads an excel file

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace GroceryCoCheckout
 {
-    class Item
+    /// <summary>
+    /// This class represents an item the GroceryCo
+    /// </summary>
+    public class Item
     {
         /// <summary>
         /// Name of the item
@@ -42,6 +45,9 @@ namespace GroceryCoCheckout
         {
             Name = name;
             Price = price;
+            Quantity = 0;
+            TotalDiscount = 0;
+            Promotions = null;
         }
 
         /// <summary>

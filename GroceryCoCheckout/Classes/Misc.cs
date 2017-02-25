@@ -9,7 +9,7 @@ namespace GroceryCoCheckout
     /// <summary>
     /// Holds all miscellaneous functions to be used by any class
     /// </summary>
-    class Misc
+    public class Misc
     {
         /// <summary>
         /// Formarts a double to 2 decimal places

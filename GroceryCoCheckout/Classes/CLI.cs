@@ -10,7 +10,7 @@ namespace GroceryCoCheckout
     /// This class stores all the commands available. Calls all the PrintToCLI methods of 
     /// each Output object
     /// </summary>
-    class CLI
+    public class CLI
     {
         private Output[] output;
         private SortedList<string, Action> commands;
@@ -42,17 +42,20 @@ namespace GroceryCoCheckout
         /// run the defaultCommand method
         /// </summary>
         /// <param name="command"></param>
-        public void RunCommand(string command)
+        public bool RunCommand(string command)
         {
+            bool status = false;
             try
             {
                 Action run = commands[command];
                 run();
+                status = true;
             }
             catch(KeyNotFoundException)
             {
                 defaultCommand();
             }
+            return status;
         }
 
         /// <summary>
@@ -60,7 +63,7 @@ namespace GroceryCoCheckout
         /// </summary>
         private void defaultCommand()
         {
-            Console.WriteLine("Error. Command does not exist. Type \"help\" to get a list of" + 
+            Console.WriteLine("Error. Command does not exist. Type \"help\" to get a list of " + 
                 "all available commands");
         }
 
