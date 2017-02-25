@@ -20,10 +20,23 @@ I chose to make the command line checkout system interactive and provided a desi
 The classes used are :
 | Class | Description |
 | --- | --- |
+| Item | |
+| Catalog | |
+| Cart | |
+| CLI | |
+| Promotion | |
+| OnSalePrice| |
+| GroupPrice | |
+| OutputCLI | |
+| Misc | |
+
 ###Interfaces
 The interfaces used are:
 | Interface | Description |
 | --- | --- |
+| Excel reader | |
+| Discount | |
+| Output | |
 
 ###Data structures
 * `Sorted list` - I chose to use this data structure to model different objects like Catalog, Output or anything that needed searching. Since the Sorted list implements binary search, the search time would be O(log n) (according to MSDN). This ensures a consistent time to search. 
