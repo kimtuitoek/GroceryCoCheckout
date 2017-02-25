@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroceryCoCheckout
 {
-    class GroupPromotions
+    class GroupPrice
     {
 
     }

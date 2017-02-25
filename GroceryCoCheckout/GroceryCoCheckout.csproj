@@ -80,7 +80,7 @@
     <Compile Include="Interfaces\Output.cs" />
     <Compile Include="Classes\Promotion.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Classes\GroupPromotions.cs" />
+    <Compile Include="Classes\GroupPrice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +102,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -38,12 +38,12 @@ namespace GroceryCoCheckout
         /// Constructor
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="info"></param>
+        /// <param name="description"></param>
         /// <param name="amount"></param>
-        public Promotion(string name, string info, double amount)
+        public Promotion(string name, string description, double amount)
         {
             Name = name;
-            Info = info;
+            Info = description;
             Amount = amount;
         }
 

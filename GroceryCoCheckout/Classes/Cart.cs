@@ -42,7 +42,7 @@ namespace GroceryCoCheckout
 
             //Initialize command name and description
             CommandName = "cart";
-            CommandDescription = "Shows all items and applicable discounts";
+            CommandDescription = "Shows all items in the cart and all applicable discounts;
 
             //Initialize private objects
             this.catalog = catalog;
@@ -106,7 +106,7 @@ namespace GroceryCoCheckout
             //Prints the receipt
             string output = PrintReceipt();
 
-            return new OutputCLI("pay", "pay and print receipt", output);
+            return new OutputCLI("pay", "Pay and print receipt", output);
         }
 
         /// <summary>
