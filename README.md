@@ -2,6 +2,19 @@
 This is a command line checkout program for the GroceryCo company.
 
 ## How to build and run
+Clone this repository to your desktop:
+`git clone https://github.com/kimtuitoek/GroceryCoCheckout`
+
+### Using Visual studio
+Open the **GroceryCoCheckout.csproj** file located in the GroceryCoCheckout folder or follow the following steps:
+1. Start Visual Studio.
+2. On the menu bar, choose **File**, **Open**, **Project/Solution**.
+The Open Project dialog box opens.
+3. Locate the **GroceryCoCheckout.csproj** in the GroceryCoCheckout folder and open it.
+4. Choose the F5 key to run the project. A Command Prompt window appears with the **GroceryCo Checkout** logo displayed.
+
+### Using the Command-line
+Follow the steps outlined on the MSDN [here](https://msdn.microsoft.com/en-ca/library/78f4aasd.aspx)
 
 ## Usage
 The command line accepts different commands that support a number of actions to interact with the program. They are defined as follows:
