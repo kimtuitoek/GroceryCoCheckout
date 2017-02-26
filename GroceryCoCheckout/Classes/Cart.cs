@@ -209,7 +209,7 @@ namespace GroceryCoCheckout
         public string PrintReceipt()
         {
             string str = "";
-            string line = Misc.drawLine('*', 50);
+            string line = Misc.drawLine('*', 58);
 
             //Header for the receipt
             str += "\t" + line + "\n\n";
