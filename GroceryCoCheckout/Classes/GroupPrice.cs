@@ -79,6 +79,7 @@ namespace GroceryCoCheckout
             double discount = 0;
 
             Promotion newPromotion = null;
+            int quantity = item.Quantity;
 
             if (GroupPrices.TryGetValue(item.Name, out quantityToPriceMap))
             {
@@ -88,15 +89,17 @@ namespace GroceryCoCheckout
                     KeyValuePair<int, double> pair = new KeyValuePair<int, double>();
                     foreach(var v in quantityToPriceMap)
                          pair = v;
-                    
+
                     //Check the quantity of the item and see whether is qualifies for a discount
-                    if (item.Quantity >= pair.Key)
+                    while(quantity >= pair.Key)
                     {
-                        discount = (item.Price * item.Quantity - pair.Value);
+                        discount = (item.Price * quantity - pair.Value);
                         item.TotalDiscount += discount;
-                        string info = "@ " + pair.Key + " for $" + Misc.format2DP(pair.Value);
-                        newPromotion = new Promotion(Name, info, discount);
+                        quantity -= pair.Key;
                     }
+
+                    string info = "@ " + pair.Key + " for $" + Misc.format2DP(pair.Value);
+                    newPromotion = new Promotion(Name, info, discount);
                 }
             }
             amount = discount;
