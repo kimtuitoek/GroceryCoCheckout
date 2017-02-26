@@ -66,7 +66,7 @@ namespace GroceryCoCheckout
 
         public string ToString()
         {
-            string str = Name + "\t\t" + Price;
+            string str = Name + "\t\t" + Misc.format2DP(Price);
             return str;
         }
     }
