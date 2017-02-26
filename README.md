@@ -6,12 +6,12 @@ Clone this repository to your desktop:
 `git clone https://github.com/kimtuitoek/GroceryCoCheckout.git`
 
 ### Using Visual studio
-Open the **GroceryCoCheckout.csproj** file located in the GroceryCoCheckout folder or follow the following steps:
+Open the **GroceryCoCheckout** file located in the project folder or follow the following steps:
 
 1. Start Visual Studio.
 2. On the menu bar, choose **File**, **Open**, **Project/Solution**.
 The Open Project dialog box opens.
-3. Locate the **GroceryCoCheckout.csproj** in the GroceryCoCheckout folder and open it.
+3. Locate the **GroceryCoCheckout** solution file in the project folder.
 4. Choose the **F5 key** to run the project. A Command Prompt window appears with the **GroceryCo Checkout** logo displayed.
 
 ### Using the Command-line
@@ -30,7 +30,8 @@ The command line accepts different commands that support a number of actions to 
 
 ## Assumptions
 * There is sufficient memory to run the application on the GroceryCo computers. The Catalog and Promotion objects are read in from excel files and stored in memory.
-* Items have already been scanned into the checkout system and stored in an excel file.
+* Items have already been scanned into the checkout system and stored in a ShoppingList excel file.
+* Items in the ShoppingList excel file are ordered in the order they were scanned.
 * All discounts applied do not exceed the original price of the item.
 * The GroceryCo computers have an Excel editor.
 
@@ -57,6 +58,8 @@ The classes used are :
 | OutputCLI | This is a concrete implemtation for the Output interface. An Ouput object contains a command definition. This allows theh creation of any command. |
 | Misc | This class contains miscellaneous methods that are used by any class. |
 
+I designed the Cart and CLI classes with extensibility in mind. In order to add a new promotion all one needs to do is implenment the dicount interface and pass the it to the constructor of cart and the discount will be applied automatically. To add a new command to the CLI, implement the Output interface or use the OutputCLI class to create an Output object that can be passed the CLI's constructor.
+
 ###Interfaces
 The interfaces used are:
 
@@ -78,6 +81,9 @@ I consisdered using a few design patterns to solve some problems I encountered b
 * `Singleton` - I wanted to have singletons for objects like Catalog, CLI, or the Promotion objects to ensure only one instance is created. This would ensure that memory usage is at a minium with no extra objects being created.
 
 * `Observer listner` - I wanted to use the FileSystemWatcher class(which implements the observer listener design pattern) from the System.IO package to watch for any changes to the prices and promotional prices defined in the excel files during runtime. This would ensure that all the prices and promotions defined in memory were the latest price definitions.
+
+## Testing
+All the tests are located in the GroceryCoCheckoutTests folder
 
 ## Limitations
 * Time constraint limited the amount of features that could be implemented.
