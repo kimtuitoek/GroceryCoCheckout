@@ -39,9 +39,9 @@ The command line accepts multiple commands. These commands perform a `Console.Wr
 I chose to make an interactive command line checkout system and provided a design that allowed future extensibility.
 
 ###File inputs
-* I decided to use Excel files to store the the list of items, prices and promotions. These files are available in the `Data` folder. The reason I chose this file type was because of how easy it is for a user to read and edit. This would allow the marketing team to easily define new promotions using an excel editor. The downside is that parsing this type of file had to be done by implementing the Excel reader interface. A concrete implementation of this interace could be provided int the future.
+* I decided to use Excel files to store the list of items, prices and promotions. These files are available in the `Data` folder. The reason I chose this file type was because of how easy it is for a user to read and edit. This would allow the marketing team to easily define new promotions using an excel editor. The downside is that parsing this type of file had to be done by implementing the Excel reader interface. A concrete implementation of this interface could be provided in the future.
 * I considered other storage formats that would be easier to deal as a developer such as `text` files, `CSV`, `JSON`, `XML`. The downside to this is that editing for a regular user would be difficult.
-* Future considerations would be to provide a config file to define all settings applicable to this program.
+* Future considerations would be to provide a `config file` to define all settings applicable to this program.
 
 ###Classes
 The classes used are:
