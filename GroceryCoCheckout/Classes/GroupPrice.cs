@@ -93,11 +93,11 @@ namespace GroceryCoCheckout
                     //Check the quantity of the item and see whether is qualifies for a discount
                     while(quantity >= pair.Key)
                     {
-                        discount = (item.Price * quantity - pair.Value);
-                        item.TotalDiscount += discount;
+                        discount += (item.Price * pair.Key - pair.Value);
                         quantity -= pair.Key;
                     }
 
+                    item.TotalDiscount += discount;
                     string info = "@ " + pair.Key + " for $" + Misc.format2DP(pair.Value);
                     newPromotion = new Promotion(Name, info, discount);
                 }
