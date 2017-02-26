@@ -66,7 +66,7 @@ The interfaces used are:
 | Interface | Description |
 | --- | --- |
 | ExcelReader | This interface defines the `ReadExcel` method. Classes that implement this method must provide a way to read an excel file. |
-| Discount | This interface defines the `ApplyPromotion` method. Classes that implment this method need to pass an Item and an output variavle representing the `TotalDiscountApplied` to the item. It should return a `Promotion` object that represents the promotion applied. |
+| Discount | This interface defines the `ApplyDiscount` method. Classes that implment this method need to pass an Item and an output variavle representing the `TotalDiscountApplied` to the item. It should return a `Promotion` object that represents the promotion applied. |
 | Output | This interface define the `PrintToCLI` method. This method is called when executing a command. Classes that implement this interface need to override the `ToString` method.  Could be extended to include command line arguments|
 
 ###Data structures
