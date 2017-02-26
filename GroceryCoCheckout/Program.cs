@@ -22,10 +22,12 @@ namespace GroceryCoCheckout
             onSalePrice.ReadExcel();
 
             //Create and initialize group promotion object
+            GroupPrice groupPrice = new GroupPrice();
+            groupPrice.ReadExcel();
 
             //Create an empty cart, add items to the cart and then apply all 
             //qualifying promotions
-            Cart cart = new Cart(catalog, onSalePrice);
+            Cart cart = new Cart(catalog, onSalePrice, groupPrice);
             cart.ReadExcel();
             cart.ApplyPromotions();
 

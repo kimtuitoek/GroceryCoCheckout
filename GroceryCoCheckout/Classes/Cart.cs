@@ -209,7 +209,7 @@ namespace GroceryCoCheckout
         public string PrintReceipt()
         {
             string str = "";
-            string line = Misc.drawLine('*', 48);
+            string line = Misc.drawLine('*', 50);
 
             //Header for the receipt
             str += "\t" + line + "\n\n";
@@ -221,7 +221,7 @@ namespace GroceryCoCheckout
             foreach (var item in cart)
             {
                 //Display name and quantity bbefore total price and discount
-                str += "\t" + item.Value.Name + "\tx" + item.Value.Quantity + "\t\t\t\t$" +
+                str += "\t" + item.Value.Name + "\tx" + item.Value.Quantity + "\t\t\t\t\t$" +
                     Misc.format2DP((item.Value.Price * item.Value.Quantity)) + "\n";
 
                 //Add applied promotions to the receipt
@@ -233,7 +233,7 @@ namespace GroceryCoCheckout
             }
 
             //Total
-            str += "\n" + "\t\t\t\t\t" + "Total:\t$" + Misc.format2DP(Total);
+            str += "\n" + "\t\t\t\t\t\t" + "Total:\t$" + Misc.format2DP(Total);
             str += "\n" + "\t" + "Items sold: " + ItemCount;
             str += "\n" + "\t" + "You saved : $" + TotalDiscount;
 

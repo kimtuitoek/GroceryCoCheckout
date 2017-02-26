@@ -57,6 +57,7 @@
     <Compile Include="CartTests.cs" />
     <Compile Include="OnSalePriceTests.cs" />
     <Compile Include="CLITests.cs" />
+    <Compile Include="GroupPriceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GroceryCoCheckout\GroceryCoCheckout.csproj">
